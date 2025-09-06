@@ -1,0 +1,19 @@
+# Build
+target/
+*.log
+
+# IDEs
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Java/Maven wrapper (keep the wrapper, ignore caches)
+.mvn/wrapper/maven-wrapper.jar
+/src/main/webapp/META-INF/context.xml
