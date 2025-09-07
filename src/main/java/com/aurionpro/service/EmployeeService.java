@@ -33,17 +33,17 @@ public class EmployeeService {
 	public int getLeaveBalance(int id) {
 		return userDao.getLeaveBalance(id);
 	}
+
 	public void updateLeaveBalance(int userId, int newBalance) {
-	    empDao.updateLeaveBalance(userId, newBalance);
+		empDao.updateLeaveBalance(userId, newBalance);
 	}
 
 	public boolean isUsernameTakenByOtherUser(String username, int userIdToExclude) {
-	    return empDao.isUsernameTakenByOtherUser(username, userIdToExclude);
+		return empDao.isUsernameTakenByOtherUser(username, userIdToExclude);
 	}
 
 	public User getEmployeeManager(int managerId) {
-	    return empDao.getEmployeeManager(managerId);
+		return empDao.getEmployeeManager(managerId);
 	}
-
 
 }

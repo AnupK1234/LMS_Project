@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manager Dashboard</title>
+    <title>Employee Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -57,13 +57,6 @@
             font-size: 1rem;
             font-weight: 500;
         }
-        .sidebar .nav-link.text-white {
-            color: #c9d1d9 !important;
-        }
-        .sidebar .nav-link.text-white:hover {
-            color: #fff !important;
-            background: rgba(64,224,208, 0.09);
-        }
         .sidebar .bi {
             font-size: 1.25rem;
             color: #40e0d0;
@@ -90,27 +83,14 @@
             flex-grow: 1;
             overflow-y: auto;
             background: #f6fafd;
+            padding: 2rem;
         }
-        .toast-notification { position: fixed; top: 20px; right: 20px; z-index: 1050; min-width: 250px; }
-        /* Responsive adjustments */
-        @media (max-width: 900px) {
-            .sidebar { width: 100vw; height: auto; flex-direction: row; }
-            .sidebar .nav { flex-direction: row !important; }
-        }
-        @media (max-width: 600px) {
-            .sidebar { min-width: 100vw; }
-        }
-        .content {
-            flex-grow: 1;
-            overflow-y: auto;
-            background: #f6fafd;
-        }
-        /* Style for toast notifications */
         .toast-notification { position: fixed; top: 20px; right: 20px; z-index: 1050; min-width: 250px; }
     </style>
 </head>
 <body class="d-flex">
-    <!-- Toast Container -->
+
+	<!-- Toast Container -->
     <div class="toast-container toast-notification">
         <c:if test="${not empty sessionScope.success_toast}">
             <div class="toast show align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
@@ -134,35 +114,30 @@
 
     <!-- Sidebar -->
     <div class="d-flex flex-column flex-shrink-0 p-3 sidebar">
-        <a href="${pageContext.request.contextPath}/manager?action=dashboard" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <i class="bi bi-person-workspace fs-4"></i>
+        <a href="${pageContext.request.contextPath}/employee/dashboard" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <i class="bi bi-person-circle fs-4"></i>
             <span class="fs-5 ms-2">Employee Panel</span>
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li>
-                <a href="${pageContext.request.contextPath}/manager?action=dashboard" class="nav-link ${requestScope.view == 'dashboard' ? 'active' : 'text-white'}">
+                <a href="${pageContext.request.contextPath}/employee/dashboard" class="nav-link ${requestScope.view == 'dashboard' ? 'active' : 'text-white'}">
                     <i class="bi bi-speedometer2"></i>Dashboard
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/manager?action=showPendingRequests" class="nav-link ${requestScope.view == 'pending_requests' ? 'active' : 'text-white'}">
-                    <i class="bi bi-card-list"></i>Pending Requests
+                <a href="${pageContext.request.contextPath}/employee/showAttendanceLeave" class="nav-link ${requestScope.view == 'attendance_leave' ? 'active' : 'text-white'}">
+                    <i class="bi bi-calendar-plus"></i>Attendance & Leave
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/manager?action=showLeaveHistory" class="nav-link ${requestScope.view == 'leave_history' ? 'active' : 'text-white'}">
+                <a href="${pageContext.request.contextPath}/employee/leaveHistory" class="nav-link ${requestScope.view == 'leave_history' ? 'active' : 'text-white'}">
                     <i class="bi bi-clock-history"></i>My Leave History
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/manager?action=showApplyLeave" class="nav-link ${requestScope.view == 'apply_leave' ? 'active' : 'text-white'}">
-                    <i class="bi bi-calendar-plus"></i>Apply for Leave
-                </a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/manager?action=showEditProfile" class="nav-link ${requestScope.view == 'edit_profile' ? 'active' : 'text-white'}">
-                    <i class="bi bi-person-circle"></i>Edit Profile
+                <a href="${pageContext.request.contextPath}/employee/showProfile" class="nav-link ${requestScope.view == 'edit_profile' ? 'active' : 'text-white'}">
+                    <i class="bi bi-person-lines-fill"></i>Edit Profile
                 </a>
             </li>
         </ul>
@@ -174,36 +149,29 @@
             </a>
         </div>
     </div>
-    <!-- Main Content Area -->
-    <div class="flex-grow-1 p-4 content">
-        <c:if test="${requestScope.view == 'dashboard'}">
-            <jsp:include page="dashboard.jsp" />
-        </c:if>
-        <c:if test="${requestScope.view == 'pending_requests'}">
-            <jsp:include page="pending_requests.jsp" />
-        </c:if>
-        <c:if test="${requestScope.view == 'leave_history'}">
-            <jsp:include page="leave_history.jsp" />
-        </c:if>
-        <c:if test="${requestScope.view == 'apply_leave'}">
-            <jsp:include page="apply_leave.jsp" />
-        </c:if>
-        <c:if test="${requestScope.view == 'edit_profile'}">
-            <jsp:include page="edit_profile.jsp" />
-        </c:if>
-    </div>
+
+    <!-- Main Content -->
+   <div class="flex-grow-1 content">
+		<c:if test="${requestScope.view == 'dashboard'}">
+			<jsp:include page="dashboard_content.jsp" />
+		</c:if>
+		<c:if test="${requestScope.view == 'attendance_leave'}">
+			<jsp:include page="attendance_leave.jsp" />
+		</c:if>
+		<c:if test="${requestScope.view == 'leave_history'}">
+			<jsp:include page="leave_history.jsp" />
+		</c:if>
+		<c:if test="${requestScope.view == 'edit_profile'}">
+			<jsp:include page="edit_profile.jsp" />
+		</c:if>
+	</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-       <script>
-        // Wait for the document to be fully loaded
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Find any toast element that is currently being shown
             var toastEl = document.querySelector('.toast.show');
-            
-            // If a visible toast is found
             if (toastEl) {
-                // Use setTimeout to hide it after 3 seconds (3000 milliseconds)
                 setTimeout(function () {
-                    // Create a Bootstrap Toast instance from the element and hide it
                     var toastInstance = new bootstrap.Toast(toastEl);
                     toastInstance.hide();
                 }, 3000);
@@ -211,4 +179,4 @@
         });
     </script>
 </body>
-</html>
+</html> 
