@@ -207,25 +207,14 @@ body {
 			<li><a
 				href="${pageContext.request.contextPath}/admin?action=manageEmployees"
 				class="nav-link ${requestScope.view == 'manage_employees' ? 'active' : 'text-white'}">
-					<i class="bi bi-people"></i>View Employees
+					<i class="bi bi-people"></i>Manage Users
 			</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/admin?action=showHoliday"
 				class="nav-link ${requestScope.view == 'showHoliday' ? 'active' : 'text-white'}">
-					<i class="bi bi-people"></i>Create Holiday
+					<i class="bi bi-calendar-event"></i>Create Holiday
 			</a></li>
-			<li><a
-				href="${pageContext.request.contextPath}/admin?action=createEmployee"
-				class="nav-link ${requestScope.view == 'create_employee' ? 'active' : 'text-white'}">
-					<i class="bi bi-people"></i>Create Employee
-			</a></li>
-			<!--
-            <li>
-                <a href="${pageContext.request.contextPath}/admin?action=showEditProfile" class="nav-link ${requestScope.view == 'edit_profile' ? 'active' : 'text-white'}">
-                    <i class="bi bi-person-circle"></i>Edit Profile
-                </a>
-            </li>
-            -->
+
 		</ul>
 
 		<div>
@@ -240,21 +229,24 @@ body {
 	<!-- Main Content Area -->
 	<div class="flex-grow-1 p-4 content">
 		<c:if test="${requestScope.view == 'dashboard'}">
-            <jsp:include page="dashboard_content.jsp" />
-        </c:if>
+			<jsp:include page="dashboard_content.jsp" />
+		</c:if>
 		<c:if test="${requestScope.view == 'pending_requests'}">
 			<jsp:include page="pending_requests.jsp" />
 		</c:if>
 		<c:if test="${requestScope.view == 'manage_employees'}">
-            <jsp:include page="employees.jsp" />
-        </c:if>
+			<jsp:include page="employees.jsp" />
+		</c:if>
 		<c:if test="${requestScope.view == 'showHoliday'}">
-            <jsp:include page="create_holiday.jsp" />
-        </c:if>
-		<%--
-        <c:if test="${requestScope.view == 'edit_profile'}">
-            <jsp:include page="edit_profile.jsp" />
-        </c:if> --%>
+			<jsp:include page="create_holiday.jsp" />
+		</c:if>
+		<c:if test="${requestScope.view == 'add_user'}">
+			<jsp:include page="add_user.jsp" />
+		</c:if>
+		<c:if test="${requestScope.view == 'edit_user'}">
+			<jsp:include page="edit_user.jsp" />
+		</c:if>
+
 	</div>
 
 
