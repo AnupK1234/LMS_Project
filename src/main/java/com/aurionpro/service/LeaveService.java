@@ -40,6 +40,9 @@ public class LeaveService {
 	        final int DASHBOARD_REQUEST_LIMIT = 5; // Business rule: Show max 5 requests on the dashboard
 	        return leaveRequestDao.findRecentPendingRequestsByManager(managerId, DASHBOARD_REQUEST_LIMIT);
 	    }
+	 public List<LeaveRequest> getLeaveRequestsInMonth(int userId, int year, int month) {
+			return leaveRequestDao.findLeaveRequestsInMonth(userId, year, month);
+		}
 	 public boolean canApplyForLeaveThisMonth(int userId, LocalDate newLeaveStartDate, LocalDate newLeaveEndDate) {
 	        final int MAX_LEAVE_DAYS_PER_MONTH = 2; // The business rule: max 2 days per month
 

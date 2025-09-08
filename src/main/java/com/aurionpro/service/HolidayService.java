@@ -1,9 +1,12 @@
 package com.aurionpro.service;
 
-import com.aurionpro.dao.HolidayDAO;
-import com.aurionpro.model.Holiday;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import com.aurionpro.dao.HolidayDAO;
+import com.aurionpro.model.Holiday;
 
 public class HolidayService {
 	private final HolidayDAO dao = new HolidayDAO();
@@ -27,4 +30,7 @@ public class HolidayService {
                 .filter(holiday -> !holiday.getHolidayDate().isBefore(today)) // Keep holidays that are today or in the future
                 .collect(java.util.stream.Collectors.toList());
     }
+	public Set<LocalDate> getAllHolidayDates() {
+		return dao.findAll().stream().map(Holiday::getHolidayDate).collect(Collectors.toSet());
+	}
 }

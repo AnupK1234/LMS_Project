@@ -257,4 +257,32 @@ public class LeaveRequestDao {
         return requests;
     }
 
+	public List<LeaveRequest> findLeaveRequestsInMonth(int userId, int year, int month) {
+		List<LeaveRequest> requests = new ArrayList<>();
+		String sql = "SELECT * FROM leave_requests WHERE user_id = ? AND YEAR(start_date) = ? AND MONTH(start_date) = ? AND status = 'APPROVED'";
+ 
+		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setInt(1, userId);
+			stmt.setInt(2, year);
+			stmt.setInt(3, month);
+ 
+			try (ResultSet rs = stmt.executeQuery()) {
+				while (rs.next()) {
+					LeaveRequest req = new LeaveRequest();
+					req.setId(rs.getInt("id"));
+					req.setUserId(rs.getInt("user_id"));
+					req.setStartDate(rs.getDate("start_date"));
+					req.setEndDate(rs.getDate("end_date"));
+					req.setStatus(rs.getString("status"));
+					requests.add(req);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return requests;
+	}
+ 
+ 
+
 }

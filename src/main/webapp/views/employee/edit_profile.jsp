@@ -9,8 +9,8 @@
 <head>
     <title>Edit Your Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -85,7 +85,7 @@
     <div class="modern-card">
     <h3>Edit Your Profile</h3>
         <p class="text-muted">Update your personal information below. Your username cannot be changed.</p>
-        
+
         <form action="${pageContext.request.contextPath}/employee" method="post" class="modern-form needs-validation" novalidate>
             <input type="hidden" name="action" value="updateProfile">
             <input type="hidden" name="id" value="<c:out value='${sessionScope.user.id}'/>">
@@ -98,7 +98,7 @@
                     Please provide your first name.
                 </div>
             </div>
-            
+
             <div>
                 <label for="lastName" class="form-label">Last Name</label>
                 <input type="text" class="form-control" id="lastName" name="lastName" 
@@ -107,7 +107,7 @@
                     Please provide your last name.
                 </div>
             </div>
-            
+
             <div>
                 <label for="email" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="email" name="email" 
@@ -116,13 +116,13 @@
                     Please provide a valid email address.
                 </div>
             </div>
-            
+
             <div>
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" name="username" 
                        value="<c:out value='${sessionScope.user.username}'/>" readonly>
             </div>
-            
+
             <button type="submit" class="btn btn-primary mt-2">
                 <i class="bi bi-save me-2"></i>Save Changes
             </button>
