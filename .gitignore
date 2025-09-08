@@ -19,3 +19,5 @@ Thumbs.db
 .mvn/wrapper/maven-wrapper.jar
 /src/main/webapp/META-INF/context.xml
 /bin/
+
+.metadata
